@@ -1,0 +1,10 @@
+services:
+  dij-lektor-site:
+    stdin_open: true
+    tty: true
+    build: .
+    volumes: [ .:/site ]
+    working_dir: /site
+    ports: [ 8888:8000 ]
+    container_name: dij-local
+    command: /bin/bash -c "export PATH="$PATH:/home/ubuntu/.local/bin" && lektor server -h 0.0.0.0 -p 8000 -O /site/_static-build"
