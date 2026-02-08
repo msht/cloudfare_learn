@@ -31,6 +31,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site-lektor-master/site-lektor-master/build
+          name: github-pages
+
 
   deploy:
     needs: build
