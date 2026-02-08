@@ -1,48 +1,71 @@
 <!doctype html>
-<meta charset="utf-8">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/static/style.css'|url }}">
-<title>{% block title %}Welcome{% endblock %} to Dar al-Islam Jamaica</title>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{{ '/static/style.css'|url }}">
+
+  <title>{% block title %}Welcome{% endblock %} | Dar al-Islam Jamaica</title>
+</head>
+
 <body>
-  <header>
-    <div class="logo">
-      <img src="{{ '/static/Logo_DIJ2_lowres.jpg'|url }}" alt="Dar al-Islam Jamaica Logo">
-      <h1>Dar al-Islam Jamaica</h1>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ '/'|url }}">
+        <img class="brand-mark" src="{{ '/static/Logo_DIJ2_lowres.jpg'|url }}" alt="Dar al-Islam Jamaica Logo">
+        <span class="brand-name">Dar al-Islam Jamaica</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li class="nav-item{% if this._path == '/' %} is-active{% endif %}">
+            <a class="nav-link" href="{{ '/'|url }}">Home</a>
+          </li>
+
+          {% for href, title in [
+            ['/masajid', 'Mosques of Jamaica'],
+            ['/articles', 'Articles'],
+            ['/classes', 'Classes'],
+            ['/donate', 'Donate']
+          ] %}
+            <li class="nav-item{% if this.is_child_of(href) %} is-active{% endif %}">
+              <a class="nav-link" href="{{ href|url }}">{{ title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul class="nav navbar-nav">
-        <li{% if this._path == '/' %} class="active"{% endif
-          %}><a href="{{ '/'|url }}">Home</a></li>
-        {% for href, title in [
-          ['/masajid', 'Mosques of Jamaica'],
-          ['/articles', 'Articles'],
-          ['/classes', 'Classes'],
-          ['/donate', 'Donate']
-        ] %}
-          <li{% if this.is_child_of(href) %} class="active"{% endif
-            %}><a href="{{ href|url }}">{{ title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
   </header>
-  <div class="page">
-    {% block body %}{% endblock %}
-  </div>
-  <footer>
-    <nav>
-      <ul class="nav navbar-nav">
-        {% for href, title in [
-          ['/about', 'About DIJ'],
-          ['/news', 'News'],
-          ['/contact', 'Contact']
-        ] %}
-          <li{% if this.is_child_of(href) %} class="active"{% endif
-            %}><a href="{{ href|url }}">{{ title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-    &copy; 2026 Dar al-Islam Jamaica. All Rights Reserved.
+
+  <main class="site-main">
+    <div class="content-wrap">
+      {% block body %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          {% for href, title in [
+            ['/about', 'About DIJ'],
+            ['/news', 'News'],
+            ['/contact', 'Contact']
+          ] %}
+            <li class="footer-item{% if this.is_child_of(href) %} is-active{% endif %}">
+              <a class="footer-link" href="{{ href|url }}">{{ title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="footer-meta">
+        &copy; 2026 Dar al-Islam Jamaica. All Rights Reserved.
+      </div>
+    </div>
   </footer>
 </body>
+</html>
