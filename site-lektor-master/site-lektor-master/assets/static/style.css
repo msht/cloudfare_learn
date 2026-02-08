@@ -29,13 +29,12 @@ a:hover { text-decoration: underline; }
   padding-left: 24px;
   padding-right: 24px;
 }
-
-/* ---- Header ---- */
+/* ---- Header (Casa Umar-inspired) ---- */
 .site-header {
+  background: #f6d75b; /* warm yellow */
+  border-bottom: none;
   position: sticky;
   top: 0;
-  background: #fff;
-  border-bottom: 1px solid #eee;
   z-index: 10;
 }
 
@@ -43,27 +42,41 @@ a:hover { text-decoration: underline; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 72px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  min-height: 84px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-mark {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-}
-
+/* Brand */
 .brand-name {
-  font-size: 18px;
-  letter-spacing: 0.06em;
+  font-size: 16px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
-/
+/* Nav */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  border-bottom: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav-item.is-active .nav-link {
+  font-weight: 600;
+}
