@@ -1,11 +1,20 @@
-name: Build and publish to public Pages repo
+name: Build and deploy Lektor to Pages
 
 on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,10 +26,15 @@ jobs:
       - run: pip install lektor
       - run: lektor build -O build
 
-      - name: Push build/ to public repo (gh-pages branch)
-        uses: peaceiris/actions-gh-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          personal_token: ${{ secrets.PAGES_PUSH_TOKEN }}
-          external_repository: YOUR_GITHUB_USERNAME/YOUR_PUBLIC_REPO_NAME
-          publish_branch: gh-pages
-          publish_dir: ./build
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/deploy-pages@v4
+
