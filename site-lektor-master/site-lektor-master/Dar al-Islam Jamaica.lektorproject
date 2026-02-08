@@ -1,7 +1,7 @@
 [project]
 name = Dar al-Islam Jamaica
-url = http://daralislamjamaica.pages.dev
-url_style = absolute
+url = https://msht.github.io/cloudfare_learn/
+url_style = relative
 
 [alternatives.en]
 name = English
