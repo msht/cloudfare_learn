@@ -25,7 +25,7 @@ jobs:
 
       - run: pip install lektor
       - run: lektor build -O build
-        working-directory: site-lektor-master/site-lektor-master/Dar al-Islam Jamaica.lektorproject
+        working-directory: site-lektor-master/site-lektor-master
        
 
       - uses: actions/upload-pages-artifact@v3
