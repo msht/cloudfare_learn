@@ -80,3 +80,18 @@ a:hover { text-decoration: underline; }
 .nav-item.is-active .nav-link {
   font-weight: 600;
 }
+/* ---- FIX oversized logo ---- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  width: 56px;
+  height: 56px;
+  max-width: 56px;
+  max-height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
