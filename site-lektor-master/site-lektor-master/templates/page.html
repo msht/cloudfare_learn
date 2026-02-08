@@ -6,7 +6,7 @@
   {# Optional hero image (only shows if a page has hero_image set) #}
   {% if this.hero_image %}
     <section class="hero">
-      <img class="hero-img" src="{{ this.hero_image|url }}" alt="">
+      <img class="hero-img" src="{{ this.hero_image|asseturl }}" alt="">
     </section>
   {% endif %}
 
