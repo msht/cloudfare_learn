@@ -1,6 +1,22 @@
 {% extends "layout.html" %}
 {% block title %}{{ this.title }}{% endblock %}
+
 {% block body %}
-  <h2>{{ this.title }}</h2>
-  {{ this.body }}
+
+  {# Optional hero image (only shows if a page has hero_image set) #}
+  {% if this.hero_image %}
+    <section class="hero">
+      <img class="hero-img" src="{{ this.hero_image|url }}" alt="">
+    </section>
+  {% endif %}
+
+  <section class="section">
+    <div class="section-inner">
+      <h1 class="page-title">{{ this.title }}</h1>
+      <div class="prose">
+        {{ this.body }}
+      </div>
+    </div>
+  </section>
+
 {% endblock %}
